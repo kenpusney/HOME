@@ -1,0 +1,7 @@
+:set +m
+:set +t
+:set editor vim
+
+:set -XGADTs
+
+:set -XTypeFamilies
