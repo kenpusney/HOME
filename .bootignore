@@ -1,9 +1,9 @@
-bootstrap.sh
-bootignore.sh
-.bootfiles
-.git
-.gitignore
-.bootignore
 .
 ..
+.bootfiles
+.bootignore
+bootignore.sh
+bootstrap.sh
+.git
+.gitignore
 README.md

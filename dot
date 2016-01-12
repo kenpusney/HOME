@@ -1,0 +1,48 @@
+bootstrap() {
+	files=`ls -a files/ | sort`
+
+	for file in $files; do
+		printf "$file\n" >> .bootfiles
+	done
+
+	files=`grep -v -x -f .bootignore .bootfiles`
+
+	for file in $files; do
+	 if [ -d files/$file ]
+		then
+			mkdir -p ~/$file
+			cp -r files/$file/* ~/$file
+		else
+		    cp files/$file ~/
+		fi
+	done
+
+	rm .bootfiles
+}
+
+bootignore() {
+	cat >> .bootignore <<__IGNORE
+$1
+__IGNORE
+
+	FILES="`cat .bootignore | uniq | sort`"
+
+	> .bootignore
+
+	for IGNORED in "$FILES"; do
+		printf "%s\n" $IGNORED >> .bootignore
+	done
+}
+
+case $1 in
+'boot' )
+    bootstrap
+	;;
+'ignore' )
+    bootignore $2
+	;;
+* )
+    echo "Usage: dot [boot|ignore]"
+	;;
+esac
+
