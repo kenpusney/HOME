@@ -10,5 +10,4 @@ FILES="`cat .bootignore | uniq | sort`"
 
 for IGNORED in "$FILES"; do
    printf "%s\n" $IGNORED >> .bootignore
-   cat .bootignore
 done

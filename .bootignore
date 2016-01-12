@@ -1,2 +1,9 @@
-fuck
-good
+bootstrap.sh
+bootignore.sh
+.bootfiles
+.git
+.gitignore
+.bootignore
+.
+..
+README.md
