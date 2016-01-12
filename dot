@@ -1,46 +1,73 @@
-bootstrap() {
+#!/bin/bash
+dotboot() {
 	files=`ls -a files/ | sort`
 
 	for file in $files; do
-		printf "$file\n" >> .bootfiles
+		printf "$file\n" >> .dotfiles
 	done
 
-	files=`grep -v -x -f .bootignore .bootfiles`
+	files=`grep -v -x -f .dotignore .dotfiles`
 
 	for file in $files; do
-	 if [ -d files/$file ]
+		if [ -d files/$file ]
 		then
 			mkdir -p ~/$file
 			cp -r files/$file/* ~/$file
 		else
-		    cp files/$file ~/
+		    cp files/$file ~/$file
 		fi
 	done
 
-	rm .bootfiles
+	rm .dotfiles
 }
 
-bootignore() {
-	cat >> .bootignore <<__IGNORE
+dotignore() {
+	cat >> .dotignore <<__IGNORE
 $1
 __IGNORE
 
-	FILES="`cat .bootignore | uniq | sort`"
+	FILES="`cat .dotignore | uniq | sort`"
 
-	> .bootignore
+	> .dotignore
 
 	for IGNORED in "$FILES"; do
-		printf "%s\n" $IGNORED >> .bootignore
+		printf "%s\n" $IGNORED >> .dotignore
 	done
+}
+
+dotsync() {
+    git add .
+	git commit -m "sync at `date`"
+	git push origin master
+}
+
+dotgrab() {
+    file=$1
+	dest=files/$1
+    base=~/$file
+	
+	if [ -d $base ]
+	then
+	   mkdir -p $dest
+	   cp -r $base/* $dest/
+	else
+	   cp $base $dest
+	fi
 }
 
 case $1 in
 'boot' )
-    bootstrap
+    dotboot
 	;;
 'ignore' )
-    bootignore $2
+    dotignore $2
 	;;
+'sync' )
+    dotsync
+    ;;
+'grab' )
+    dotgrab $2
+    ;;
 * )
     echo "Usage: dot [boot|ignore]"
 	;;

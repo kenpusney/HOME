@@ -4,6 +4,7 @@
 .bootignore
 bootignore.sh
 bootstrap.sh
+dot
 .git
 .gitignore
 README.md
