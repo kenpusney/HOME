@@ -3,6 +3,7 @@
   email = kenpusney@gmail.com
 
 [alias]
+  c = clone
   co = checkout
   ci = commit
   st = status

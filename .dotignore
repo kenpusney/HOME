@@ -2,8 +2,6 @@
 ..
 .bootfiles
 .bootignore
-bootignore.sh
-bootstrap.sh
 dot
 .git
 .gitignore
