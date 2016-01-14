@@ -1,15 +1,15 @@
 #!/bin/bash
 
 copyto() {
-	base=$1
-	dest=$2
-	if [ -d $base ]
-	then
-		 mkdir -p $dest
-		 cp -r $base/* $dest/
-	else
-		 cp $base $dest
-	fi
+  base=$1
+  dest=$2
+  if [ -d $base ]
+  then
+    mkdir -p $dest
+    cp -r $base/* $dest/
+  else
+    cp $base $dest
+  fi
 }
 
 dotboot() {
@@ -22,8 +22,8 @@ dotboot() {
   files=`grep -v -x -f .dotignore .dotfiles`
 
   for file in $files; do
-		base=files/$file
-		dest=~/$file
+    base=files/$file
+    dest=~/$file
     copyto "$base" "$dest"
   done
 
