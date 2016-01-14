@@ -78,6 +78,6 @@ case $1 in
   dotlist
   ;;
 * )
-  echo "Usage: dot [boot|ignore]"
+  echo "Usage: dot [boot|grab|ignore|list|sync]"
   ;;
 esac
