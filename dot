@@ -13,7 +13,7 @@ copyto() {
 }
 
 dotboot() {
-  files=`ls -a files/ | sort`
+  files=`ls -A files/ | sort`
 
   for file in $files; do
     printf "$file\n" >> .dotfiles
@@ -22,8 +22,8 @@ dotboot() {
   files=`grep -v -x -f .dotignore .dotfiles`
 
   for file in $files; do
-		$base=files/$file
-		$dest=~/$file
+		base=files/$file
+		dest=~/$file
     copyto "$base" "$dest"
   done
 
@@ -57,6 +57,10 @@ dotgrab() {
   copyto "$base" "$dest"
 }
 
+dotlist() {
+  ls -Al files
+}
+
 case $1 in
 'boot' )
   dotboot
@@ -69,6 +73,9 @@ case $1 in
   ;;
 'grab' )
   dotgrab $2
+  ;;
+'list' )
+  dotlist
   ;;
 * )
   echo "Usage: dot [boot|ignore]"
