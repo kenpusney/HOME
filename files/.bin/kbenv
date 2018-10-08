@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+KUBEENV=$1
+KUBECFG="${HOME}/.kube/config.${KUBEENV}"
+TARGET="${HOME}/.kube/config"
+
+die() {
+  echo $1
+  exit 1
+}
+
+
+[ -e $KUBECFG ] || die "No config for env ${KUBEENV} found, do you mean 'kubectl'?"
+
+cp -f $KUBECFG $TARGET && echo "Kube config '${KUBEENV}' applied."
