@@ -1,5 +1,5 @@
 
-export PATH="~/bin":${PATH}
+export PATH="~/.bin":${PATH}
 
 alias ls="ls --color"
 alias la="ls -a"
