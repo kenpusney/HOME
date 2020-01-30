@@ -1,6 +1,7 @@
 .bootfiles
 .bootignore
-dot
 .git
 .gitignore
 README.md
+dot
+service
